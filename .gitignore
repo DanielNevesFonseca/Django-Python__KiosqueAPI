@@ -1,0 +1,2 @@
+# ignorar os caches gerados pelo interpretador py.
+__pycache__
