@@ -21,6 +21,5 @@ if __name__ == "__main__":
         "description": "Sanduiche de Java",
         "type": "fast-food"
     }
-    print(product_handler.add_product(
-        products, new_product, new_product1, new_product1
-        ))
+    print(product_handler.add_product(products, **new_product))
+

@@ -17,26 +17,22 @@ def get_products_by_type(product_type: str):
     for dict in products:
         if dict.get("type") == product_type:
             same_type_list.append(dict)
+        else:
+            return []
 
     return same_type_list
 
 
-def add_product(menu_list: list, *products: dict):
+def add_product(menu_list: list, **product: dict):
     greater_id = 0
-    new_products_list = []
-
+    dict_product = product
     for dict in menu_list:
         current_id = dict["_id"]
         if current_id > greater_id:
             greater_id = current_id
 
-    for dict_product in products:
-        greater_id += 1
-        dict_product.update({"_id": greater_id})
+    greater_id += 1
+    dict_product.update({"_id": greater_id})
+    products.append(dict_product)
+    return dict_product
 
-        if len(products) > 1:
-            new_products_list.append(dict_product)
-        else:
-            return dict_product
-
-    return new_products_list
