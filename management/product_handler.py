@@ -3,6 +3,9 @@ from menu import products
 
 def get_product_by_id(product_id: int):
 
+    if not isinstance(product_id, int):
+        raise TypeError("product id must be an int")
+
     for dict in products:
         if dict.get("_id") == product_id:
             return dict
@@ -35,4 +38,3 @@ def add_product(menu_list: list, **product: dict):
     dict_product.update({"_id": greater_id})
     products.append(dict_product)
     return dict_product
-
