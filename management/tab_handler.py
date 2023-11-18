@@ -8,5 +8,5 @@ def calculate_tab(table: list):
         for dict_table in table:
             if dict["_id"] == dict_table["_id"]:
                 subtotal += (dict["price"] * dict_table["amount"])
-    subtotal_dict = {"subtotal": f'${subtotal:.2f}'}
+    subtotal_dict = {"subtotal": f'${round(subtotal, 2)}'}
     return subtotal_dict

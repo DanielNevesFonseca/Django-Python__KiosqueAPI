@@ -21,18 +21,18 @@ def get_products_by_type(product_type: str):
 
     same_type_list = []
 
-    for dict in products:
-        if dict.get("type") == product_type:
-            same_type_list.append(dict)
-        else:
-            return []
-
+    for product_dict in products:
+        for key, value in product_dict.items():
+            if key == "type" and value == product_type:
+                same_type_list.append(product_dict)
+    
     return same_type_list
 
 
 def add_product(menu_list: list, **product: dict):
     greater_id = 0
     dict_product = product
+    
     for dict in menu_list:
         current_id = dict["_id"]
         if current_id > greater_id:
@@ -40,7 +40,7 @@ def add_product(menu_list: list, **product: dict):
 
     greater_id += 1
     dict_product.update({"_id": greater_id})
-    products.append(dict_product)
+    menu_list.append(dict_product)
     return dict_product
 
 
@@ -62,5 +62,5 @@ def menu_report():
 
     type_count = Counter(types_list)
     most_common_type = type_count.most_common(1)[0][0]
-    log_str = f"Products Count: {total_product_quantity} - Average Price: ${average_price:.2f} - Most Common Type: {most_common_type}"
+    log_str = f"Products Count: {total_product_quantity} - Average Price: ${average_price:.1f} - Most Common Type: {most_common_type}"
     return log_str
